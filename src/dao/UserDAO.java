@@ -15,12 +15,12 @@ public class UserDAO {
 	private static Connection getConnection() throws URISyntaxException, SQLException{
 
 		//heroku configに設定されている値を取得
-		URI dburi = new URI(System.getenv("CLEAARDB_DATABASE_URL"));
+		URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
 		//:を区切りとして必要な情報を抜き取る
-		String username = dburi.getUserInfo().split(":")[0];
-		String password = dburi.getUserInfo().split(":")[1];
+		String username = dbUri.getUserInfo().split(":")[0];
+		String password = dbUri.getUserInfo().split(":")[1];
 		//JDBC用のURLを生成
-		String dburl = "jdbc:mysql://" + dburi.getPath();
+		String dburl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
 		return DriverManager.getConnection(dburl, username, password);
 
 	}

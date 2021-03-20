@@ -11,7 +11,7 @@
 
 	<h3>Login</h3>
 
-	<form action="<%= request.getContextPath() %>/LoginServlet" method="post">
+	<form action="./LoginServlet" method="post">
 	<p>・ニックネーム</p>
 	<input type="text" name="nickname">
 	<p>・パスワード</p>

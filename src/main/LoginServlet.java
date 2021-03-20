@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 		CheckUserLogic checkUser = new CheckUserLogic();
 
 		//executeメソッドの処理結果を新たに変数に入れる
-		User findedUser = checkUser.execute(user);
+        User findedUser = checkUser.execute(user);
 
 		//findedUserの処理結果に応じて表示するViewを選定する
 		if(findedUser != null) {

@@ -32,7 +32,7 @@ public class UserDAO {
 			//ドライバの読み込み
 			Class.forName("com.mysql.jdbc.Driver");
 		//データベース接続のためprivateメソッドを呼び出す
-			try(Connection conn = getConnection()){
+            try(Connection conn = getConnection()) {
 				//SELECT文を準備
 				String sql = "SELECT * FROM account WHERE nickName = ? AND password = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);

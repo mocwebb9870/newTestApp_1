@@ -29,7 +29,7 @@ public class UserDAO {
 
         try {
                 // ドライバの読み込み。
-            Class.forName ("com.mysql.jdbc.Driver");
+            Class.forName ("com.mysql.cj.jdbc.Driver");
             // データベースへ接続のためprivateメソッドを呼び出す。
             try(Connection conn = getConnection()) {
                 // SELECT文を準備。

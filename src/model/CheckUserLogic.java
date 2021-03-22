@@ -8,4 +8,3 @@ public class CheckUserLogic {
     return dao.findUser(user);
     }
 }
-

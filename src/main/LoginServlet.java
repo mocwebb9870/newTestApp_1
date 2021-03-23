@@ -37,10 +37,9 @@ public class LoginServlet extends HttpServlet {
             // jspから送られた値を取得
         String nickName = request.getParameter("nickName");
         String password = request.getParameter("password");
-        String money = request.getParameter("money");
 
         // userインスタンスを生成しつつ、コントラスタを動かす。
-        User user = new User(nickName, password, money);
+        User user = new User(nickName, password);
 
 
         // executeメソッドの処理結果を新たに変数に入れる。

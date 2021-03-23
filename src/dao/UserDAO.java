@@ -49,8 +49,7 @@ public class UserDAO {
                 // 結果表からデータを取得
                     String nickName = rs.getString("nickname");
                     String password = rs.getString("password");
-                    String money = rs.getString("money");
-                    findedUser = new User(nickName, password, money);
+                    findedUser = new User(nickName, password);
                 }
             } catch (URISyntaxException e) {
                 e.printStackTrace();

@@ -10,10 +10,9 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String nickName, String password, String money) {
+    public User(String nickName, String password) {
         this.nickName = nickName;
         this.password = password;
-        this.money = money;
     }
 
     public String getNickName() {

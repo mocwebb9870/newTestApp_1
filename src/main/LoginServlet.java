@@ -16,23 +16,40 @@ import model.User;
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    		throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
         dispatcher.forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    		throws ServletException, IOException {
+
+		//文字コード設定する
+		request.setCharacterEncoding("UTF-8");
+		String crud = request.getParameter("crud");
+
+		// CheckUserLogicインスタンスを生成。
+		CheckUserLogic checkUser = new CheckUserLogic();
+
+		switch(crud){
+			case "login":
             // jspから送られた値を取得
         String nickName = request.getParameter("nickName");
         String password = request.getParameter("password");
+        String money = request.getParameter("money");
+
         // userインスタンスを生成しつつ、コントラスタを動かす。
-        User user = new User(nickName, password);
-        // CheckUserLogicインスタンスを生成。
-        CheckUserLogic checkUser = new CheckUserLogic();
-        // executeメソッドの処理結果を新たに変数に入れる。入る値はnullかDAOで生成した新たなUserインスタンス。
+        User user = new User(nickName, password, money);
+
+
+        // executeメソッドの処理結果を新たに変数に入れる。
+        //入る値はnullかDAOで生成した新たなUserインスタンス。
         User findedUser = checkUser.execute(user);
+
         // findedUserの処理結果に応じて表示するViewを選定する。
         if (findedUser != null) {
+
                 // Userインスタンスが入っていれば、結果をリクエストパラメータにセットしmainPageを表示する。
             request.setAttribute("findedUser", findedUser);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mainPage.jsp");
@@ -40,7 +57,15 @@ public class LoginServlet extends HttpServlet {
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginFail.jsp");
             dispatcher.forward(request, response);
+
         }
+		break;
+
+		case "insert":
+
+			//form送信されたデータを受け取る
+			String newName = request.getParameter("nickName");
+
+		}
     }
 }
-

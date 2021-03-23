@@ -11,6 +11,8 @@
         <div>
             <h3>メインページ</h3>
             <p>ようこそ<strong><%= findedUser.getNickName() %></strong>さん</p>
+
+            <a href="./index.jsp">TOPページに戻る</a>
         </div>
     </body>
 </html>

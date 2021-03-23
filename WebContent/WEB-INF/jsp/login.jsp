@@ -13,6 +13,9 @@
                 <input type="text" name="nickName">
                 <p>・パスワード:</p>
                 <input type="password" name="password">
+
+                <input type="hidden" name="crud" value="login">
+
                 <button type="submit">Login</button>
             </form>
         </div>

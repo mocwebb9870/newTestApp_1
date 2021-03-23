@@ -21,7 +21,8 @@ public class UserDAO {
         // JDBC用のURLを生成。
         String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
 
-        return DriverManager.getConnection(dbUrl, username, password);
+        return DriverManager.getConnection
+        		(dbUrl, username, password);
     }
 
     public User findUser(User user) {
@@ -33,10 +34,13 @@ public class UserDAO {
             // データベースへ接続のためprivateメソッドを呼び出す。
             try(Connection conn = getConnection()) {
                 // SELECT文を準備。
-                String sql = "SELECT * FROM account WHERE nickname = ? AND password = ?";
+                String sql =
+                		"SELECT * FROM account WHERE nickname = ? AND password = ? AND money = ?";
                 PreparedStatement pStmt = conn.prepareStatement(sql);
                 pStmt.setString(1, user.getNickName());
                 pStmt.setString(2, user.getPassword());
+                pStmt.setString(3, user.getMoney());
+
                 // SELECTを実行し、結果表を取得。
                 ResultSet rs = pStmt.executeQuery();
                 // 一致したユーザーが存在した場合、
@@ -45,7 +49,8 @@ public class UserDAO {
                 // 結果表からデータを取得
                     String nickName = rs.getString("nickname");
                     String password = rs.getString("password");
-                    findedUser = new User(nickName, password);
+                    String money = rs.getString("money");
+                    findedUser = new User(nickName, password, money);
                 }
             } catch (URISyntaxException e) {
                 e.printStackTrace();
@@ -60,6 +65,7 @@ public class UserDAO {
         }
         return findedUser;
     }
+
 
 }
 
